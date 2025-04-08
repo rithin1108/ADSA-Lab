@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define N 8  // Change N for different board sizes
+#define N 4  // Change N for different board sizes
 
 void printSolution(int board[N][N]) {
     for (int i = 0; i < N; i++) {
