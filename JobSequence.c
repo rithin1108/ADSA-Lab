@@ -8,18 +8,27 @@ struct Job {
     int profit;
 };
 
-int comparison(const void* a, const void* b) {
-    struct Job* jobA = (struct Job*)a;
-    struct Job* jobB = (struct Job*)b;
-    return jobB->profit - jobA->profit;
+// Bubble Sort to sort jobs by decreasing profit
+void bubbleSort(struct Job arr[], int n) {
+    for (int i = 0; i < n ; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j].profit < arr[j + 1].profit) {
+                // Swap arr[j] and arr[j+1]
+                struct Job temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
 }
 
 void printJobScheduling(struct Job arr[], int n) {
-    qsort(arr, n, sizeof(struct Job), comparison);
+    bubbleSort(arr, n);  // Sort using bubble sort
+
     int result[n];
     bool slot[n];
     int totalProfit = 0;
-    
+
     for (int i = 0; i < n; i++)
         slot[i] = false;
 
@@ -48,7 +57,7 @@ void printJobScheduling(struct Job arr[], int n) {
 
 int main() {
     struct Job arr[] = { {'a', 2, 100}, {'b', 1, 19}, {'c', 2, 27}, {'d', 1, 25}, {'e', 3, 15} };
-   
+
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("Following is the maximum profit sequence of jobs:\n");
     printJobScheduling(arr, n);
