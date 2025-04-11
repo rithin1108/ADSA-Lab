@@ -37,12 +37,14 @@ void buildMinHeap(int arr[],int n)
     int i;
     for(i=n/2-1;i>=0;i--)
     {
+        
         minHeapify(arr,n,i);
     }
 }
 
 void insertMinHeap(int arr[],int *n,int key)
 {
+    
     if(*n>=MAX_SIZE)
     {
         printf("Heap is full\n");
@@ -52,11 +54,12 @@ void insertMinHeap(int arr[],int *n,int key)
     int i=*n-1;
     arr[i]=key;
 
-     while (i != 0 && arr[(i - 1) / 2] > arr[i]) 
-     {
-        swap(&arr[i],&arr[(i-1)/2]);
-        i=(i-1)/2;
-     }
+   
+    for(i=*n/2-1;i>=0;i--)
+    {
+        
+        minHeapify(arr,*n,i);
+    }
 }
 
 void deleteMinHeap(int arr[],int *n)
@@ -80,7 +83,7 @@ void deleteMinHeap(int arr[],int *n)
     int i;
     for(i=0;i<n;i++)
     {
-        printf("%d",arr[i]);
+        printf("%d\n",arr[i]);
     }
     printf("\n");
  }
@@ -128,10 +131,15 @@ void insertMaxHeap(int arr[], int *n, int key)
  int i = *n - 1;
  arr[i] = key;
 
- while (i != 0 && arr[(i - 1) / 2] < arr[i]) 
+//  while (i != 0 && arr[(i - 1) / 2] < arr[i]) 
+//  {
+//  swap(&arr[i], &arr[(i - 1) / 2]);
+//  i = (i - 1) / 2;
+
+//  }
+ for (i = *n / 2 - 1; i >= 0; i--) 
  {
- swap(&arr[i], &arr[(i - 1) / 2]);
- i = (i - 1) / 2;
+ maxHeapify(arr, *n, i);
 
  }
 
@@ -159,7 +167,7 @@ void displayMaxHeap(int arr[], int n)
 int i;
  for (i = 0; i < n; i++) 
  {
- printf("%d ", arr[i]);
+ printf("%d\n ", arr[i]);
  }
  printf("\n");
 }
